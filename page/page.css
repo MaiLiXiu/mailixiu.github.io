@@ -145,6 +145,7 @@ p,body,ul,li{margin:0;padding: 0;}
     background: rgba(221,221,221,1);
     margin-bottom: 4rem;
     padding-bottom: 1.4rem;
+    position: relative;
 }
 .top{
     height: 2.85rem;
@@ -534,4 +535,8 @@ p.icon-translate{
     line-height: 1.85rem;
     color: #b5bab6;
     display: inline-block;
+}
+.hidden-target{
+    position: absolute;
+    top:-150px;
 }

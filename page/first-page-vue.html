@@ -80,9 +80,10 @@
                     <!-- <li></li> -->
                 </ul>
             </div>
-            <div class="page w-1170">
+            <div class="page w-1170">  <!-- 前面两页用vue渲染 -->
+                <div id="page1" class="hidden-target"></div>
                 <div class="top b-005"></div> 
-                <div class="page-iner-top"  id="page1">
+                <div class="page-iner-top">
                     <div class="name c-637">{{ page1.title }}</div>
                     <div class="border-top"></div>
                     <div class="desc w-36">{{ page1.desc }}</div>
@@ -98,18 +99,6 @@
                                 <label class="iconfont c-fff " v-html="item.icon" :class="{'b-637':index2%2==0,'b-412':index2%2!=0}"></label>
                                 <label class=" f-w" v-html="item.desc" :class="{'c-637':index2%2==0,'c-412':index2%2!=0}"></label>
                             </li>
-                            <!-- <li class="icon-1">
-                                <label class="iconfont c-fff b-412">&#xe602;</label>
-                                <label class="c-412 f-w">组织过程严重依赖人工和渠道</label>
-                            </li>
-                            <li class="icon-1">
-                                <label class="iconfont c-fff b-637">&#xe614;</label>
-                                <label class="c-637 f-w">只能完成交易难以凝聚用户用量</label>
-                            </li>
-                            <li class="icon-1">
-                                <label class="iconfont c-fff b-412">&#xe70b;</label>
-                                <label class="c-412 f-w">对客户粘性缺乏新的营销方案</label>
-                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -120,7 +109,8 @@
                     <div class="iconfont c-b50">&#xe61d;</div>
                 </div>
             </div>
-            <div class="page w-1170" id="page2">
+            <div class="page w-1170">
+                <div id="page2" class="hidden-target"></div>
                 <div class="top b-412"></div> 
                 <div class="page-iner-top">
                     <div class="name c-412">{{ page2.title}}</div>
@@ -142,25 +132,14 @@
                                 <label class="iconfont icon" v-html="item.icon" :class="{'b-412':index%2==0,'b-637':index%2!=0}"></label>
                                 <label class="f-w" v-html="item.desc" :class="{'c-412':index%2==0,'c-637':index%2!=0}"></label>
                             </li>
-                            <!-- <li class="icon-2">
-                                <label class="iconfont icon b-637">&#xe607;</label>
-                                <label class="c-637 f-w">多品种小批量<br/>单件生产</label>
-                            </li>
-                            <li class="icon-2">
-                                <label class="iconfont icon b-412">&#xe614;</label>
-                                <label class="c-412 f-w">有效规避<br/>大量产品库存</label>
-                            </li>
-                            <li class="icon-2">
-                                <label class="iconfont icon b-637">&#xe606;</label>
-                                <label class="c-637 f-w">根据用户需求<br/>做快速生产反应</label>
-                            </li> -->
                         </ul>
                     </div>
                     </div>
             </div>
             <div class="page w-1170">
+                <div id="page3" class="hidden-target"></div>
                 <div class="top b-005"></div> 
-                <div class="page-iner-top" id="page3">
+                <div class="page-iner-top">
                     <p class="name c-637">SPT特色交互功能</p>
                     <p class="border-top"></p>
                     <p class="desc w-60">SPT提供T恤交互设计、设计稿交易、设计稿社群分享、活动推广工具、设计师业务、代理业务、各角色价值链构建、基于设计稿的生产过程管理、订单物流监控等T恤定制各环节工具</p>
@@ -209,8 +188,9 @@
                 </div>
             </div>
             <div class="page w-1170">
+                <div id="page4" class="hidden-target"></div>
                 <div class="top b-412"></div> 
-                <div class="page-iner-top"  id="page4">
+                <div class="page-iner-top">
                     <p class="c-412 name">服务流程&常见问题FAQ</p>
                     <p class="border-top"></p>
                     <p class="desc w-57">在这里您不但能了解我们的服务流程，还能查看日常问题的解决方案，或者留言给我们帮您解决</p>
@@ -254,8 +234,9 @@
                 <!-- <div class="list"></div> -->
             </div>    
             <div class="page w-1170">
+                <div id="page5" class="hidden-target"></div>
                 <div class="top b-005"></div> 
-                <div class="page-iner-top"  id="page5">
+                <div class="page-iner-top">
                     <p class="name c-637">可行性运营案例参考</p>
                     <p class="border-top"></p>
                     <p class="desc w-60">我们可以通过热门事件、团队纪念、比赛活动和社会组织等其他方面去组织运营</p>
@@ -280,6 +261,7 @@
                 </div>
             </div>
             <div class="page w-1170">
+                <div id="page6" class="hidden-target"></div>
                 <div class="top b-412"></div> 
                 <div class="page-iner-top"  id="page6">
                     <p class="c-412 name">合作企业</p>
@@ -304,8 +286,9 @@
                 </div>
             </div>
             <div class="page w-1170">
+                <div id="page7" class="hidden-target"></div>
                 <div class="top b-005"></div> 
-                <div class="page-iner-top"  id="page7">
+                <div class="page-iner-top">
                     <p class="name c-637">SP-思博</p>
                     <p class="border-top"></p>
                     <p class="desc w-60">WWW.SUPPORTC2M.COM</p>
@@ -402,9 +385,9 @@
                 </div>
             </div>
         </div>
-        <script src="vue.js"></script>
+        <script src="../js/vue.js"></script>
         <script src="page.js"></script>
-        <script src="jquery-1.11.1.min.js"></script>
+        <script src="../js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript">
             // 当窗口大小改变时，设置html的字体
             function window_resize(){

@@ -189,7 +189,7 @@
         </div>
         <audio src="click.wav" class="audio-ding"></audio>
         <audio src="win.wav" class="audio-win"></audio>
-        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="../js/jquery-1.11.1.min.js"></script>
         <script>
             window.win_chess = [ ];
 
@@ -202,6 +202,7 @@
             // 当窗口大小改变时，设置html的字体
             function window_resize(){
                 var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+                if(width>1000) width = Math.min(400, width);
                 var font_size = width/20+'px';
                 $('html').css('fontSize', font_size);
             }
