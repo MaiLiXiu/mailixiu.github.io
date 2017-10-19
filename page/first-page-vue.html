@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="page.css">
+        <!-- <link rel="stylesheet" type="text/javascript" href="page.js"> -->
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="menu">
+                <div class="menu-iner w-1170">
+                    <img src="logo1.jpg">
+                    <nav class="menu-right">
+                        <ul>
+                            <li class="c-red">
+                                <a>
+                                    <label class="f-16">首页</label> 
+                                    <label class="f-12">home</label> 
+                                </a>
+                            </li> 
+                            <li >
+                                <a href="#page1">
+                                    <label class="f-16">企业困境</label>
+                                    <label class="f-12">dilemma</label>
+                                </a>
+                            <li>
+                            <li>
+                                <a href="#page2">
+                                    <label class="f-16">SPT产品</label>
+                                    <label class="f-12">Introduction</label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#page3">
+                                    <label class="f-16">特色功能</label>
+                                    <label class="f-12">Function</label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#page4">
+                                    <label class="f-16">优质服务</label>
+                                    <label class="f-12">service</label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#page5">
+                                    <label class="f-16">营销案例</label>
+                                    <label class="f-12">Case</label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#page6">
+                                    <label class="f-16">合作企业</label>
+                                    <label class="f-12">Cooperation</label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#page7">
+                                    <label class="f-16">SP思博</label>
+                                    <label class="f-12">Support</label>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="lunbo">
+                <ul class="picture">
+                    <li style="display: inline-block;"><img src='pic1.jpg'></li>
+                    <li><img src="pic2.jpg"></li>
+                    <li><img src="pic3.jpg"></li>
+                </ul>
+                <div class="page0-center">
+                    <label class="f-40"><span class="c-red">WE</span> ARE SUPPORT<span class="c-red">ER</span></label>
+                    <label class="f-26">-NICE TO MEET YOU-</label>
+                </div>
+                <ul class="small-circle">
+                    <!-- <li></li> -->
+                </ul>
+            </div>
+            <div class="page w-1170">
+                <div class="top b-005"></div> 
+                <div class="page-iner-top"  id="page1">
+                    <div class="name c-637">{{ page1.title }}</div>
+                    <div class="border-top"></div>
+                    <div class="desc w-36">{{ page1.desc }}</div>
+                </div>
+                <div class="content">
+                    <div class="button">
+                        <li v-for="(tab,index) in page1.tabs" :class="{'b-637': tab.is_click}" @click="change_tab(page1,tab)">{{ tab.title }}
+                        </li>
+                    </div>
+                    <div>
+                        <ul class="icon-button" v-for="tab in page1.tabs" v-if="tab.is_click">
+                            <li class="icon-1 " v-for="(item, index2) in tab.items" >
+                                <label class="iconfont c-fff " v-html="item.icon" :class="{'b-637':index2%2==0,'b-412':index2%2!=0}"></label>
+                                <label class=" f-w" v-html="item.desc" :class="{'c-637':index2%2==0,'c-412':index2%2!=0}"></label>
+                            </li>
+                            <!-- <li class="icon-1">
+                                <label class="iconfont c-fff b-412">&#xe602;</label>
+                                <label class="c-412 f-w">组织过程严重依赖人工和渠道</label>
+                            </li>
+                            <li class="icon-1">
+                                <label class="iconfont c-fff b-637">&#xe614;</label>
+                                <label class="c-637 f-w">只能完成交易难以凝聚用户用量</label>
+                            </li>
+                            <li class="icon-1">
+                                <label class="iconfont c-fff b-412">&#xe70b;</label>
+                                <label class="c-412 f-w">对客户粘性缺乏新的营销方案</label>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="page1-bottom">
+                    <div class="button b-637 c-fff f-w f-18">解决方案</div>
+                    <div class="iconfont c-637">&#xe61d;</div>
+                    <div class="iconfont c-920">&#xe61d;</div>
+                    <div class="iconfont c-b50">&#xe61d;</div>
+                </div>
+            </div>
+            <div class="page w-1170" id="page2">
+                <div class="top b-412"></div> 
+                <div class="page-iner-top">
+                    <div class="name c-412">{{ page2.title}}</div>
+                    <div class="border-top"></div>
+                    <div class="desc w-57" v-html="page2.desc">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="button">
+                        <ul>
+                            <li :class="{'b-637':tab.is_click}" v-for="tab in page2.tabs" @click="change_tab(page2,tab)">{{ tab.title }}</li>
+                            <!-- <li class="b-3b3">用户拓展&维护</li>
+                            <li class="b-3b3">企业成本&发展</li> -->
+                        </ul>
+                    </div>
+                    <div class="icon-button">
+                        <ul v-for="tab in page2.tabs" v-if="tab.is_click">
+                            <li class="icon-2" v-for="(item,index) in tab.items">
+                                <label class="iconfont icon" v-html="item.icon" :class="{'b-412':index%2==0,'b-637':index%2!=0}"></label>
+                                <label class="f-w" v-html="item.desc" :class="{'c-412':index%2==0,'c-637':index%2!=0}"></label>
+                            </li>
+                            <!-- <li class="icon-2">
+                                <label class="iconfont icon b-637">&#xe607;</label>
+                                <label class="c-637 f-w">多品种小批量<br/>单件生产</label>
+                            </li>
+                            <li class="icon-2">
+                                <label class="iconfont icon b-412">&#xe614;</label>
+                                <label class="c-412 f-w">有效规避<br/>大量产品库存</label>
+                            </li>
+                            <li class="icon-2">
+                                <label class="iconfont icon b-637">&#xe606;</label>
+                                <label class="c-637 f-w">根据用户需求<br/>做快速生产反应</label>
+                            </li> -->
+                        </ul>
+                    </div>
+                    </div>
+            </div>
+            <div class="page w-1170">
+                <div class="top b-005"></div> 
+                <div class="page-iner-top" id="page3">
+                    <p class="name c-637">SPT特色交互功能</p>
+                    <p class="border-top"></p>
+                    <p class="desc w-60">SPT提供T恤交互设计、设计稿交易、设计稿社群分享、活动推广工具、设计师业务、代理业务、各角色价值链构建、基于设计稿的生产过程管理、订单物流监控等T恤定制各环节工具</p>
+                </div>
+                <div class="button">
+                    <ul>
+                        <li class="b-637">基本功能</li>
+                        <li class="b-3b3">交互功能</li>
+                        <li class="b-3b3">运营功能</li>
+                        <li class="b-3b3">后台功能</li>
+                    </ul>
+                </div>
+                <div class="icon-button icon3-button">
+                    <ul>
+                        <li class="icon-tran left">
+                            <div class="icon-3">
+                                <label class="iconfont icon b-637">&#xe711;</label>
+                                <label class="c-637 f-w">基本配置</label>
+                            </div>
+                            <p class="icon-translate c-637">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
+                        </li>
+                        <li class="icon-tran right">
+                            <div class="icon-3">
+                                <label class="iconfont icon b-412">&#xe605;</label>
+                                <label class="c-412 f-w">支付功能</label>
+                            </div>
+                            <p class="icon-translate c-412">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="icon-tran left">
+                            <div class="icon-3">
+                                <label class="iconfont icon b-412">&#xe605;</label>
+                                <label class="c-412 f-w">支付功能</label>
+                            </div>
+                            <p class="icon-translate c-412">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
+                        </li>
+                        <li class="icon-tran right">
+                            <div class="icon-3">
+                                <label class="iconfont icon b-637">&#xe61c;</label>
+                                <label class="c-637 f-w">支持不同终端</label>
+                            </div>
+                            <p class="icon-translate c-637">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page w-1170">
+                <div class="top b-412"></div> 
+                <div class="page-iner-top"  id="page4">
+                    <p class="c-412 name">服务流程&常见问题FAQ</p>
+                    <p class="border-top"></p>
+                    <p class="desc w-57">在这里您不但能了解我们的服务流程，还能查看日常问题的解决方案，或者留言给我们帮您解决</p>
+                </div>
+                <div class="button">
+                    <ul>
+                        <li class="b-3b3">服务流程</li>
+                        <li class="b-412">常见问题</li>
+                    </ul>
+                </div>
+                <div class="page-content">
+                    <div class="content-left">
+                        <ul>
+                            <li class="c-508">前端问题</li>
+                            <li>后台问题</li>
+                            <li>生产问题</li>
+                            <li class="no-brd-btm">运营问题</li>
+                        </ul>
+                    </div>
+                    <div class="content-right">
+                        <ul>
+                            <li>
+                            <p><span class="c-508">Q1:</span>平台上下滑动时容易导致图片位移或其他错误显示？</p>
+                            <p>A1:这是因为平台在操作过程中，用户使用了错误的操作，此时应刷新平台就能解决问题。</p>
+                            </li>
+                            <li>
+                            <p><span class="c-508">Q2:</span>平台上下滑动时容易导致图片位移或其他错误显示？</p>
+                            <p>A2:这是因为平台在操作过程中，用户使用了错误的操作，此时应刷新平台就能解决问题。</p>
+                            </li>
+                            <li>
+                            <p><span class="c-508">Q3:</span>平台上下滑动时容易导致图片位移或其他错误显示？</p>
+                            <p>A3:这是因为平台在操作过程中，用户使用了错误的操作，此时应刷新平台就能解决问题。</p>
+                            </li>
+                            <li>
+                            <p><span class="c-508">Q4:</span>平台上下滑动时容易导致图片位移或其他错误显示？</p>
+                            <p>A4:这是因为平台在操作过程中，用户使用了错误的操作，此时应刷新平台就能解决问题。</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="list"></div> -->
+            </div>    
+            <div class="page w-1170">
+                <div class="top b-005"></div> 
+                <div class="page-iner-top"  id="page5">
+                    <p class="name c-637">可行性运营案例参考</p>
+                    <p class="border-top"></p>
+                    <p class="desc w-60">我们可以通过热门事件、团队纪念、比赛活动和社会组织等其他方面去组织运营</p>
+                </div>
+                <div class="button">
+                    <ul>
+                        <li class="b-637">热门事件</li>
+                        <li class="b-3b3">团队纪念</li>
+                        <li class="b-3b3">比赛活动</li>
+                        <li class="b-3b3">社会组织</li>
+                    </ul>
+                </div>
+                <div class="page-content">
+                    <div class="left-img">
+                        <img src="clothes.jpg">
+                        <img src="clothes.jpg">
+                    </div>
+                    <div class="cp-thing">
+                        <p class="cp-title c-637">#川大玻璃杯CP事件#</p>
+                        <p class="cp">女生故意摔玻璃杯只为搭讪男神，发现成本太高就发帖说了下，被打碎玻璃杯的男生看到了这条信息，马上也发了一个帖子，原来男生并不计较女生打碎自己的玻璃杯，而且还很高兴女生加了自己的微信，最后他俩因为一个玻璃杯萌发了爱情。所以可以抓住这样的热门事件，设计出相对应的设计稿，通过网络传播，增加知名度和销量</p>
+                    </div>
+                </div>
+            </div>
+            <div class="page w-1170">
+                <div class="top b-412"></div> 
+                <div class="page-iner-top"  id="page6">
+                    <p class="c-412 name">合作企业</p>
+                    <p class="border-top"></p>
+                    <p class="desc w-57">Cooperative enterprise</p>
+                </div>
+                <div class="icon-button">
+                    <ul>
+                        <li class="icon-4">
+                            <label class="b-637"><img src="logo4.jpg"></label>
+                            <label class="c-637 f-w">华帝卡尼定制平台</label>
+                        </li>
+                        <li class="icon-4">
+                            <label class="b-637"><img src="logo4.jpg"></label>
+                            <label class="c-637 f-w">Bia定制平台</label>
+                        </li>
+                        <li class="icon-4">
+                            <label class="b-637"><img src="logo4.jpg"></label>
+                            <label class="c-637 f-w">同捞同煲-云工厂</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page w-1170">
+                <div class="top b-005"></div> 
+                <div class="page-iner-top"  id="page7">
+                    <p class="name c-637">SP-思博</p>
+                    <p class="border-top"></p>
+                    <p class="desc w-60">WWW.SUPPORTC2M.COM</p>
+                </div>
+                <div class="big-logo">
+                    <img src="logo1.jpg">
+                </div>
+                <div class="sp-tran">
+                    <p>惠州思博互联网科技有限公司成立于2013年7月,也是惠州第一个起名互联网的公司,</p>
+                    <p>该公司的核心业务是开发、构建、运营Biaker平台,这是一个整合了供应链同时能够轻分享的C2M(    顾客对工厂)
+                    </p>
+                    <p>
+                       惠州思博互联网科技有限公司成立于2013年7月,也是惠州第一个起名互联网的公司,该公司的核心业务是开发、构建、运营Biaker平台,这是一个整合了供应链同时能够轻分享的C2M(顾客对工厂)平台,也是一个具有社交和交易双基因的平台。 
+                    </p>
+                </div>
+            </div>
+            <div class="page w-1170">
+                <div class="top b-412"></div> 
+                <div class="page-iner-top">
+                    <p class="c-412 name">留言系统</p>
+                    <p class="border-top"></p>
+                    <p class="desc w-57">您想说，或者您感觉不满意的，请告诉我们，我们都竭力全力为你服务</p>
+                </div>
+                <div class="form">
+                    <form></form>
+                    <div class="form-left">
+                        <form></form>
+                        <input type="text" name="name" placeholder="你的姓名">
+                        <input type="text" name="tel" placeholder="你的电话">
+                        <input type="text" name="mail" placeholder="你的邮箱">
+                        <input type="text" name="type" placeholder="留言类型">
+                    </div>
+                    <div class="form-right">
+                        <textarea placeholder="留言内容："></textarea>
+                    </div>
+                    <div class="sumit">
+                        <input type="reset" name="reset" value="重置">
+                        <input type="sumit" name="sumit" value="提交">
+                    </div>
+                </div>
+            </div>
+            <div class="foot">
+                <div class="foot-content w-1170">
+                    <div class="foot-menu">
+                        <div class="foot-menu-left">
+                            <a class="c-red">
+                                <label class="f-16">首页</label>
+                                <label class="f-12">home</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">解决方案</label>
+                                <label class="f-12">Programma</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">FPT产品</label>
+                                <label class="f-12">Introduction</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">特色功能</label>
+                                <label class="f-12">Function</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">优质服务</label>
+                                <label class="f-12">service</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">营销案例</label>
+                                <label class="f-12">Case</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">合作企业</label>
+                                <label class="f-12">Cooperation</label>
+                            </a>
+                            <a href="">
+                                <label class="f-16">SP思博</label>
+                                <label class="f-12">Support</label>
+                            </a>
+                        </div>
+                        <img src="logo1.jpg">
+                    </div>
+                    <div class="xian"></div>
+                    <div class="foot-bottom">
+                        <img src="map.jpg">
+                        <div class="contact-way">
+                            <p>企业电话：0752-2888888</p>
+                            <p>企业传真：0752-2888888</p>
+                            <p>企业邮箱：supportc2m@163.com</p>
+                            <p>企业地址：惠州市惠奥大道惠南高新科技产业园华泰路一号一号楼310号（仅限办公）</p>
+                        </div> 
+                        <div class="copyright">
+                            Copyright 2013-2017 SP思博互联网科技
+                        </div>                          
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="vue.js"></script>
+        <script src="page.js"></script>
+        <script src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript">
+            // 当窗口大小改变时，设置html的字体
+            function window_resize(){
+                var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+                var font_size = width/83+'px';
+                $('html').css('fontSize', font_size);
+            }
+            $(document).ready(function(){
+                window_resize();
+                init();
+            });
+            
+
+            for(var i=0;i<3;i++){
+                $('.small-circle').append('<li></li>');
+            }
+            $('.small-circle li:first').addClass('b-000');
+            function run(){
+                len = $('.lunbo .picture li').length;
+                current_index = 0;
+                lunbo=setInterval(function(){
+                    $('.lunbo .picture li').eq(current_index).fadeIn('500').siblings().fadeOut('500');
+                    $('.small-circle li').eq(current_index).addClass('b-000').siblings('li').removeClass('b-000');
+                    current_index++;  
+                    if(current_index==len) current_index=0;
+                },1000)
+            }
+            run();
+            $('.lunbo').hover(function(){
+                clearInterval(lunbo);
+            },function(){
+                run();
+            })
+        </script>
+    </body>
+</html>

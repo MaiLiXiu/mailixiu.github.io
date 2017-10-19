@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="key.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title></title>
+        <style type="text/css">
+            body{font-size: 0;}    
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="head-top">
+                <span>键盘指法和五笔字根练习--我爱五笔网</span>
+                <span>
+                    <img src="http://bdimg.share.baidu.com/static/images/type-button-2.jpg?cdnversion=20120831" /> 
+                </span>
+            </div>
+            <div class="wrap">
+                <div class="logo">
+                    <img src="pencil.png">
+                    <span>我爱五笔网</span>
+                    <a href="">www.52wubi.com</a>
+                </div>
+                <div class="list">
+                    <ul class="list-iner">
+                        <li v-for="list in lists">{{ list }}</li>
+                        <!-- <li>指法练习</li>
+                        <li>五笔练习</li>
+                        <li>文章练习</li>
+                        <li>编码查询</li>
+                        <li>字根表下载</li>
+                        <li>输入法下载</li> -->
+                    </ul>
+                </div>
+                <div class="show-key">
+                    <a class="key-2" v-for="(item,index) in this_five_key">
+                        <span class="key-left b" :class="{'g':this_key_index==index}"></span>
+                        <span class="key-2-right b" :class="{'g':this_key_index==index}"></span>
+                        <label class="key-font font-top iconfont" v-html="item.top_text" :class="{'one-li':item.is_single_line}"></label> 
+                        <label class="key-font font-bottom" v-html="item.bottom_text"></label> </a>
+                </div>
+                <div class="show-time">
+                    <ul>
+                        <li>
+                            <span class="iconfont" style="color: blue">&#xe600;</span>
+                            <span>时间：<label> {{ time_string }}</label></span>  
+                        </li>
+                        <li>
+                            <span class="iconfont" style="color: orange">&#xe601;</span>
+                            <span>速度：<label>{{ speed }}</label></span>  
+                        </li>
+                        <li>
+                            <span class="iconfont" style="color: green">&#xe623;</span>
+                            <span>正确率：<label>{{ accuracy }}</label></span>  
+                        </li>
+                        <li>
+                            <span class="iconfont" style="color: purple">&#xe621;</span>
+                            <span>进度：<label>{{ schedule }}</label></span>  
+                        </li>
+                    </ul>
+                </div>
+                <div class="key-wrap">
+                    <div class="key-col" v-for="line in keys">
+                        <a :class="get_key_class(item)" v-for="item in line.items">
+                            <span class="key-left" :class="get_left_color(item)"></span>
+                            <span :class="get_key_right(item)"></span>
+                            <label class="key-font font-top iconfont" v-html="item.top_text" :class="{'one-li':item.is_single_line}"></label> 
+                            <label class="key-font font-bottom">{{ item.bottom_text }}</label> 
+                        </a>
+                    </div>
+                </div>
+                    <!-- :class="'key-'+line.line" :class="{'g-ml0':item.is_first}" :class="'key-'+item.key_type+'-right'" :class="item.key_color  --> 
+                    <!-- <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">!</label> 
+                        <label class="key-font font-bottom">1</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font font-top">@</label> 
+                        <label class="key-font font-bottom">2</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">#</label> 
+                        <label class="key-font font-bottom">3</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font font-top">$</label> 
+                        <label class="key-font font-bottom">4</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font font-top">%</label> 
+                        <label class="key-font font-bottom">5</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font font-top">^</label> 
+                        <label class="key-font font-bottom">6</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font font-top">&</label> 
+                        <label class="key-font font-bottom">7</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">*</label> 
+                        <label class="key-font font-bottom">8</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font font-top">(</label> 
+                        <label class="key-font font-bottom">9</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">)</label> 
+                        <label class="key-font font-bottom">0</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">-</label> 
+                        <label class="key-font font-bottom">-</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">+</label> 
+                        <label class="key-font font-bottom">=</label> 
+                    </a>
+                    <a class="key-4">
+                        <span class="key-left p"></span>
+                        <span class="key-4-right p"></span>
+                        <label class="key-font font-top">←</label> 
+                        <label class="key-font font-bottom">Backspace</label> 
+                    </a>
+                </div>
+                <div class="key-col"><! 第二行 >
+                    <a class="key-2 g-ml0">
+                        <span class="key-left p"></span>
+                        <span class="key-2-right p"></span>
+                        <label class="key-font one-li">Tab↔</label> 
+                        
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">Q</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">W</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">E</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">R</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">T</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">Y</label> 
+                   </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">U</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">I</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">O</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">P</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">{</label> 
+                        <label class="key-font font-bottom">[</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">}</label> 
+                        <label class="key-font font-bottom">]</label> 
+                    </a>
+                    <a class="key-2">
+                        <span class="key-left p"></span>
+                        <span class="key-2-right p"></span>
+                        <label class="key-font font-top">|</label> 
+                        <label class="key-font font-bottom">\</label> 
+                    </a>
+                </div>
+                <div class="key-col"><! 第三行 >
+                    <a class="key-3 g-ml0">
+                        <span class="key-left p"></span>
+                        <span class="key-3-right p"></span>
+                        <label class="key-font one-li" style="font-size: .4rem">Caps Lock</label> 
+                        
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">A</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">S</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">D</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">F</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">G</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">H</label> 
+                   </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">J</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">K</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">L</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">:</label> 
+                        <label class="key-font font-bottom">;</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">"</label> 
+                        <label class="key-font font-bottom">'</label> 
+                    </a>
+                    <a class="key-enter">
+                        <span class="key-left p"></span>
+                        <span class="key-enter-right p"></span>
+                        <label class="key-font font-top">Enter</label> 
+                        <label class="key-font font-bottom"></label> 
+                    </a>
+                </div>
+                <div class="key-col"><! 第四行 >
+                    <a class="key-5 g-ml0">
+                        <span class="key-left p"></span>
+                        <span class="key-5-right p"></span>
+                        <label class="key-font one-li">↑ Shift</label> 
+                        
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">Z</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">X</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li">C</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">V</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">B</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">N</label> 
+                   </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">M</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top"><</label> 
+                        <label class="key-font font-bottom">,</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">></label> 
+                        <label class="key-font font-bottom">.</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font font-top">?</label> 
+                        <label class="key-font font-bottom">/</label> 
+                    </a>
+                    <a class="key-5">
+                        <span class="key-left p"></span>
+                        <span class="key-5-right p"></span>
+                        <label class="key-font one-li">↑ Shift</label> 
+                    </a>
+                </div>
+                <div class="key-col"><! 第五行 >
+                    <a class="key-3 g-ml0">
+                        <span class="key-left p"></span>
+                        <span class="key-3-right p"></span>
+                        <label class="key-font one-li">Ctrl</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left p"></span>
+                        <span class="key-1-right p"></span>
+                        <label class="key-font one-li iconfont">&#xe6be;</label> 
+                    </a>
+                    <a class="key-1">
+                        <span class="key-left b"></span>
+                        <span class="key-1-right b"></span>
+                        <label class="key-font one-li">Alt</label> 
+                    </a> -->
+            </div>
+        </div>
+        <script src="jquery-1.11.1.min.js"></script>
+        <script src="vue.js"></script>
+        <script type="text/javascript" src="origin-keys.js"></script>
+        <script type="text/javascript" src="key-new.js"></script>
+
+        <script type="text/javascript">
+            init();
+            
+            // 当窗口大小改变时，设置html的字体
+            function window_resize(){
+                var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+                var font_size = width/20+'px';
+                $('html').css('fontSize', font_size);
+            }
+            window_resize();
+            $('.list li').mouseover(function(){
+                $(this).addClass('bold').siblings('li').removeClass('bold');
+            })
+        </script>
+    </body>
+</html>

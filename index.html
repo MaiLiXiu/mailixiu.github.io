@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+    <style type="text/css">
+        *{box-sizing: border-box;}
+        ol li{list-style: none;}
+        a {text-decoration: none;color:#000;}
+        ol,li,p{margin:0;padding: 0;}
+        .wrap{width: 700px;border: 1px solid #888;background-color: #ffd;}
+        .wrap li{
+            width: 700px;
+            height: 140px;
+            line-height: 100px;
+            padding: 10px;
+            border-bottom: 1px solid #888;
+            font-size: 0;
+            margin-bottom: 0;
+        }
+        .image{
+            width: 116px;
+            display: inline-block;
+            height: 130px;
+            vertical-align: top;
+        }
+        .image img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .introdution{
+            display: inline-block;
+            width: 80%;
+            padding-left: 20px;
+            height: 110px;
+        }
+        .title{
+            font-weight: bold;
+            line-height: 28px;
+            font-size: 18px;
+        }
+        .desc{
+            font-size: 14px;
+            line-height: 24px;
+            padding-bottom: 10px;
+            text-indent: 2em;
+        }
+        .introdution span{
+            display: inline-block;
+            font-size: 10px;
+        }
+        .right{
+            float: right;
+        }
+        .bottom{
+            line-height: 16px;
+            height: 16px;
+            margin-bottom: 8px;
+        }
+        .top-title{
+            width: 60%;
+            display: inline-block;
+            background-color: #0c6;
+            color: #EEE;
+            border-radius: 8px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="wrap">
+        <h2 style="text-align: center;"><span class="top-title">完成的小项目</span></h2>
+        <ol>
+            <li v-for='item in lists'>
+               <a :href="item.url" target="_blank">   <!-- a -->
+                    <div class="image">
+                        <img :src="item.image" alt="项目截图" title="项目截图">
+                    </div>
+                    <div class="introdution">
+                        <p class="title"> {{ item.title }}</p>
+                        <p class="desc"> {{ item.introdution }}</p>
+                        <div class="bottom"> 
+                            <span>{{ item.time }}</span>
+                            <span class="right"> {{ item.version }}</span>
+                        </div>
+                        
+                    </div>
+                </a>
+            </li>
+        </ol>       
+    </div>
+    <script src="vue.js"></script>
+    <script src="index.js"></script>
+    <script>
+        init();
+    </script>
+</body>
+</html>

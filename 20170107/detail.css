@@ -1,0 +1,99 @@
+.head-title { position: relative; }
+    .head-title > img {
+        position: absolute;
+        left: .8rem;
+        top: 1rem;
+    }
+
+.main {
+    height: 100%;
+    background-color: #fff;
+    margin-top: 1rem;
+    border-bottom: 2px solid #ddd;
+    padding-top: 2rem;
+}
+
+    .main .back-wrap {
+        margin: 0 auto;
+        position: relative;
+        background-image: url('background.jpg');
+        border-radius: 1.25rem;
+        width: 16.875rem;
+        height: 14.6875rem;
+        background-color: red;
+    }
+        .main .back-wrap .back {
+            width: 15.3125rem;
+            height: 13.125rem;
+            background-color: #fff;
+            border-radius: 1rem;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .main .back-wrap .top {
+            border-radius: 1rem 1rem 0 0;
+            font-size: 1.125rem;
+            height: 2.625rem;
+            line-height: 2.625rem;
+            text-align: center;
+            background-color: #ff3b3c;
+            color: #fff;
+        }
+
+        .main .back-wrap .middle {
+            position: relative;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .main .back-wrap .days {
+            font-size: 4.375rem;
+            color: #ff3b3c;
+        }
+        .main .back-wrap .tian.r {
+            right: 1rem;
+        }
+        .main .back-wrap .tian {
+            position: absolute;
+            right: 2rem;
+            bottom: .8rem;
+        }
+        .main .back-wrap .bottom {
+            text-align: center;
+        }
+            .main .back-wrap .bottom > img {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+            .main .back-wrap .bottom > span {
+                display: inline-block;
+                vertical-align: top;
+                margin-left: .5rem;
+            }
+
+    .main .button-container {
+        margin-top: 2.5rem;
+        text-align: center;
+    }
+    .main .button-container > a {
+        font-size: 1.125rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        vertical-align: middle;
+        width: 8.125rem;
+        border-radius: .25rem;
+        text-align: center;
+        display: inline-block;
+        background-color: #62d03b;
+        color: #fff;
+    }
+    .main .button-container > img {
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+

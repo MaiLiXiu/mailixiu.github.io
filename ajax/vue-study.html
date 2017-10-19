@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title></title>
+        <style type="text/css">
+        ul li{list-style: none;}
+        ul,li{margin: 0;padding: 0;}
+        a{text-decoration: none;}
+            .c-999 { color: #999 !important; }
+            .b-999 { background-color: #999 !important; }
+            .b-red { background-color: red !important; }
+            .f-col{font-size: 0;}
+            .total{
+                width: 100%;
+                position: relative;
+            }
+            .top{
+                font-size: 0;
+                background-color:#f6f6f6;
+                height: 40px;
+                line-height: 40px;
+                padding-left: 8px;
+            }
+            .top li{
+                display: inline-block;
+                font-size: 16px;
+                color: #80bd01;
+                margin-right: 20px;
+                padding: 0px 8px;
+
+            }
+            .click{
+                background-color: #80bd01;
+                color: #fff !important;
+                border-radius: 8px;
+            }
+            .click_top{
+                height: 26px;
+                line-height: 26px;
+            }  
+            .xian{
+                width: 100%;
+                font-size: 0;
+            }
+            .xian li{
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid lightgray;
+                padding-left: 10px;
+                position: relative;
+            }
+            .li_left{
+                display: inline-block;
+                width: 12%;
+                vertical-align: top
+            }
+            .img_frame{
+                width: 30px;
+                height: 30px;
+                display: inline-block;
+                border-radius: 6px;
+                padding-right: 4px;
+                padding-top: 8px;
+            }
+            .img_frame > img{
+                max-width: 100%;
+                max-height: 100%;
+            }
+            .font_prev{
+                color: #9e78c0;
+                font-size: 12px;
+            }
+            .seperate{
+                color: #778087;
+               font-size: 10px; 
+               text-indent: 0.5em;
+            }
+            .font_next{
+                color: #b4b4b4;
+                font-size: 12px;
+            }
+            .font_center{
+                color: black;
+                font-size: 16px;
+                line-height: 30px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                height: 40px;
+                font-weight: bold;
+                display: inline-block;
+                width: 80%;
+                vertical-align: middle;
+            }
+            @media (max-width: 700px){
+                .font_center{
+                    height: 24px;
+                    line-height: 24px;
+                    vertical-align: top;
+                    width: 75%;
+                }
+            }
+            .li_center{
+                display: inline-block;
+                width: 74%;
+            }
+            .click_zhiding{
+                padding: 0px 4px;
+                font-size: 14px;
+                height: 24px;
+                line-height: 24px;
+                margin-right: 14px;
+            } 
+            .li_right{
+                display: inline-block;
+                position: absolute;
+                right: 6px;
+                width: 12%;
+                text-align: right;
+            }
+            .font_right{
+               color: #778087;
+               font-size: 10px; 
+            }
+            .img_right{
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+            .bgc_gray{
+                background-color: lightgray;
+            }
+            .count{
+                text-align: center;
+                display: inline-block;
+                font-size: 0;
+                width: 60%;
+            }
+            @media (max-width: 983px){
+            .count{
+            text-align: left;
+            display: inline-block;
+            font-size: 0;
+            position: absolute;
+            bottom: -2px;
+            left: 100px;
+            line-height: 12px;
+            }
+            }
+            .page-list{
+                width: 80%;
+                height: 30px;
+                line-height: 30px;
+                font-size: 0;
+                position: absolute;
+                right: 20px;
+                margin-top: 10px;
+            }
+            .per-page{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid black;
+                font-size: 14px;
+                text-align: center;
+                margin-right: 6px;
+            }
+            .li_center a:visit{
+                color:#888;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="total" id="wrap">
+            <ul class="top">
+                <li v-for="item in types" class="click_top" :class="{'click': current_type==item}" @click="current_type = item">{{ item.name_cn }}</li>
+                <!-- <li data-type="good" data-typename="精华" @click="data_separate(data-typename)">精华</li>
+                <li data-type="share" data-typename="分享" @click="data_separate">分享</li>
+                <li data-type="ask" data-typename="问答" @click="data_separate">问答</li>
+                <li data-type="job" data-typename="招聘" @click="data_separate">招聘</li>
+                <li data-type="dev" data-typename="客户端测试" @click="data_separate">客户端测试</li> -->
+            </ul>
+            <ul class="xian">
+                <li v-for="item in items" class="f-col">
+                    <div class="li_left">
+                        <span class="img_frame"><img :src="item.author.avatar_url">
+                        </span>
+                        <div class="count">
+                            <span class="font_prev">{{ item.reply_count }}</span>
+                            <span class="seperate">/</span>
+                            <span class="font_next">{{ item.visit_count }}</span>
+                        </div> 
+                    </div>
+                    <div class="li_center">
+                        <span v-if="current_type.name_cn=='全部'||(current_type.name_cn!='全部' && !(item.tab_cn=='问答'||item.tab_cn=='分享'))" class="click click_zhiding" :class="item.label_class" id="share" :data-typename="item.tab_cn">{{ item.tab_cn }}</span>
+                        <a :href="item.content" class="font_center">{{item.title}}</a>
+                    </div>
+                    <div class="li_right">
+                        <span class="font_right">{{ item.time_text }}</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="page-list">
+                <li class="per-page page" @click="params_page-=1">&lt;&lt;</li>
+                <li v-for="page in pages" class="per-page page" :class="{'b-red':page==params_page}" @click="params_page=page" >{{ page }}</li>
+                <li class="per-page page" @click="params_page+=1">&gt;&gt;</li>
+            </ul>
+        </div>
+        <script src="jquery-1.11.1.min.js"></script>
+        <script src="vue.js"></script>
+        <script>
+        $(document).ready(function(){
+            init();
+        });
+
+        function init(){
+            window.vm = new Vue({
+                el:"#wrap",
+                data:{
+                    params_page: 1, // 当前页
+                    params_limit: 20, // 每页多少条
+
+                    total: 0,  // 总的数据量
+                    items: [] , // 当前页的数据
+                    pages:[1,2,3,4,5,6],
+                    types:[{
+                        name: '',
+                        name_cn: '全部'
+                    }, {
+                        name: 'good',
+                        name_cn:'精华'
+                    },{
+                        name:'share',
+                        name_cn:'分享'
+                    },{
+                        name:'ask',
+                        name_cn:'问答'
+                    },{
+                        name:'job',
+                        name_cn:'招聘'
+                    },{
+                        name:'dev',
+                        name_cn:'客户端测试'
+                    }],
+                    current_type: { }// 当前选中的类型
+                },
+
+                created: function(){
+                    var vm = this;
+                    vm.current_type = vm.types[0]; // 一开始打开页面时，按钮“全部”选中
+                    vm.get_data();
+                },
+                watch:{
+                    params_page:function(){
+                        if(vm.params_page>6) vm.params_page=1;
+                        if(vm.params_page<1) vm.params_page=6;
+                        vm.get_data();
+                    },
+                    current_type:function(){
+                        vm.params_page = 1;
+                        vm.get_data();
+                    }
+
+                },
+                methods:{
+                    get_item_time_text:function(item,span_hour){
+                        if(span_hour>24){
+                            item.time_text = parseInt(span_hour/24)+'天前';
+                        }else{
+                            if(span_hour<1) item.time_text=parseInt(span_hour*60)+'分钟前';
+                            else item.time_text =parseInt(span_hour)+'小时前';
+                        } 
+                        return item.time_text;
+                    },
+
+                    get_data:function(){
+                        var vm = this;
+                        var url = 'https://cnodejs.org/api/v1/topics?tab='+vm.current_type.name+'&page='+vm.params_page+'&limit='+vm.params_limit;
+                        $.get(url, function(r){
+                            console.log(rr=r)
+                            for(var i in r.data){
+                                if(r.data[i].top){
+                                    r.data[i].tab_cn = '置顶';
+                                    r.data[i].label_class = 'b-green';
+                                }else if(r.data[i].good){
+                                    r.data[i].tab_cn = '精华';
+                                    r.data[i].label_class = 'b-green';
+                                }else if(r.data[i].tab == 'ask'){
+                                    r.data[i].tab_cn = "问答";
+                                    r.data[i].label_class = 'b-999';
+                                }else{
+                                    r.data[i].tab_cn = '分享';
+                                    r.data[i].label_class = 'b-999';
+                                }
+                                var mins = new Date(r.data[i].last_reply_at).getTime();
+                                var current_mins = new Date().getTime();
+                                var span_hour = (current_mins-mins)/1000/60/60;
+                                var time_text;
+                                r.data[i].time_text = vm.get_item_time_text(r.data[i],span_hour);
+                            }
+                            vm.items = r.data;
+                        })
+                    }
+                }
+            });
+        }
+        </script>
+    </body>
+</html>
