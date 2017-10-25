@@ -50,18 +50,30 @@
                 padding-left: 10px;
                 position: relative;
             }
+            .xian li:hover{
+                background-color: #f4f4f4;
+            }
+            @media(max-width: 500px){
+                .xian li{
+                    height: 60px;
+                    line-height: 50px;
+                    position: relative;
+                }
+            }
             .li_left{
                 display: inline-block;
                 width: 12%;
-                vertical-align: top
+                position: relative;
             }
             .img_frame{
                 width: 30px;
                 height: 30px;
                 display: inline-block;
                 border-radius: 6px;
-                padding-right: 4px;
-                padding-top: 8px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
             }
             .img_frame > img{
                 max-width: 100%;
@@ -94,7 +106,7 @@
                 width: 80%;
                 vertical-align: middle;
             }
-            @media (max-width: 700px){
+            @media (max-width: 500px){
                 .font_center{
                     height: 24px;
                     line-height: 24px;
@@ -106,6 +118,11 @@
                 display: inline-block;
                 width: 74%;
             }
+            @media(max-width: 500px){
+                .li_center{
+                    padding-top: 10px;
+                }
+            }
             .click_zhiding{
                 padding: 0px 4px;
                 font-size: 14px;
@@ -116,7 +133,7 @@
                 display: inline-block;
                 position: absolute;
                 right: 6px;
-                width: 12%;
+                width: 13%;
                 text-align: right;
             }
             .font_right{
@@ -137,25 +154,28 @@
                 font-size: 0;
                 width: 60%;
             }
-            @media (max-width: 700px){
-            .count{
-            text-align: left;
-            display: inline-block;
-            font-size: 0;
-            position: absolute;
-            bottom: -2px;
-            left: 100px;
-            line-height: 12px;
-            }
+            @media (max-width: 500px){
+                .count{
+                text-align: left;
+                display: inline-block;
+                font-size: 0;
+                position: absolute;
+                bottom: -26px;
+                left: 100px;
+                line-height: 12px;
+                margin-bottom: 4px;
+                }
             }
             .page-list{
-                width: 80%;
+                width: 280px;
                 height: 30px;
                 line-height: 30px;
                 font-size: 0;
                 position: absolute;
-                right: 20px;
-                margin-top: 10px;
+                right: 50%;
+                margin: 20px 0px 40px;
+                left: 50%;
+                transform: translate(-50%);
             }
             .per-page{
                 display: inline-block;

@@ -27,9 +27,8 @@
                 display: inline-block;
                 font-size: 16px;
                 color: #80bd01;
-                margin-right: 20px;
                 padding: 0px 8px;
-
+                margin-right: 20px;
             }
             .click{
                 background-color: #80bd01;
@@ -51,18 +50,30 @@
                 padding-left: 10px;
                 position: relative;
             }
+            .xian li:hover{
+                background-color: #ddd;
+            }
+            @media(max-width: 500px){
+                .xian li{
+                    height: 60px;
+                    line-height: 50px;
+                    position: relative;
+                }
+            }
             .li_left{
                 display: inline-block;
                 width: 12%;
-                vertical-align: top
+                position: relative;
             }
             .img_frame{
                 width: 30px;
                 height: 30px;
                 display: inline-block;
                 border-radius: 6px;
-                padding-right: 4px;
-                padding-top: 8px;
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
             }
             .img_frame > img{
                 max-width: 100%;
@@ -84,7 +95,8 @@
             .font_center{
                 color: black;
                 font-size: 16px;
-                line-height: 30px;
+                line-height: 40px;
+                padding-left: 14px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -94,7 +106,7 @@
                 width: 80%;
                 vertical-align: middle;
             }
-            @media (max-width: 700px){
+            @media (max-width: 500px){
                 .font_center{
                     height: 24px;
                     line-height: 24px;
@@ -106,18 +118,22 @@
                 display: inline-block;
                 width: 74%;
             }
+            @media(max-width: 500px){
+                .li_center{
+                    padding-top: 10px;
+                }
+            }
             .click_zhiding{
                 padding: 0px 4px;
                 font-size: 14px;
                 height: 24px;
                 line-height: 24px;
-                margin-right: 14px;
             } 
             .li_right{
                 display: inline-block;
                 position: absolute;
                 right: 6px;
-                width: 12%;
+                width: 13%;
                 text-align: right;
             }
             .font_right{
@@ -136,27 +152,34 @@
                 text-align: center;
                 display: inline-block;
                 font-size: 0;
-                width: 60%;
+                width: 65%;
+                position: absolute;
+                left: 34px;
+                bottom: -26px;
             }
-            @media (max-width: 983px){
-            .count{
-            text-align: left;
-            display: inline-block;
-            font-size: 0;
-            position: absolute;
-            bottom: -2px;
-            left: 100px;
-            line-height: 12px;
-            }
+            @media (max-width: 500px){
+                .count{
+                text-align: left;
+                display: inline-block;
+                font-size: 0;
+                position: absolute;
+                bottom: -26px;
+                left: 100px;
+                width: 160%;
+                line-height: 12px;
+                margin-bottom: 4px;
+                }
             }
             .page-list{
-                width: 80%;
+                width: 316px;
                 height: 30px;
                 line-height: 30px;
                 font-size: 0;
                 position: absolute;
-                right: 20px;
-                margin-top: 10px;
+                right: 50%;
+                margin: 20px 0px 40px;
+                left: 50%;
+                transform: translate(-50%);
             }
             .per-page{
                 display: inline-block;
@@ -196,7 +219,7 @@
                     </div>
                     <div class="li_center">
                         <span v-if="current_type.name_cn=='全部'||(current_type.name_cn!='全部' && !(item.tab_cn=='问答'||item.tab_cn=='分享'))" class="click click_zhiding" :class="item.label_class" id="share" :data-typename="item.tab_cn">{{ item.tab_cn }}</span>
-                        <a :href="item.content" class="font_center">{{item.title}}</a>
+                        <a href="javascript:void(0)" class="font_center">{{item.title}}</a>
                     </div>
                     <div class="li_right">
                         <span class="font_right">{{ item.time_text }}</span>
