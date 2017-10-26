@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title></title>
         <style type="text/css">
+        *{box-sizing: border-box;}
         ul li{list-style: none;}
         ul,li{margin: 0;padding: 0;}
         a{text-decoration: none;}
@@ -30,6 +31,12 @@
                 padding: 0px 8px;
                 margin-right: 20px;
             }
+            @media(max-width: 500px){
+                .top li{
+                    padding: 0px 4px;
+                    margin-right: 0px;
+                }
+            }
             .click{
                 background-color: #80bd01;
                 color: #fff !important;
@@ -45,7 +52,7 @@
             }
             .xian li{
                 height: 40px;
-                line-height: 40px;
+                line-height: 30px;
                 border-bottom: 1px solid lightgray;
                 padding-left: 10px;
                 position: relative;
@@ -62,8 +69,12 @@
             }
             .li_left{
                 display: inline-block;
-                width: 12%;
-                position: relative;
+                width: 110px;
+                position: absolute;
+                height: 30px;
+                margin: auto;
+                top: 0;
+                bottom: 0;
             }
             .img_frame{
                 width: 30px;
@@ -96,14 +107,14 @@
                 color: black;
                 font-size: 16px;
                 line-height: 40px;
-                padding-left: 14px;
                 overflow: hidden;
+                padding-left: 42px;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 height: 40px;
                 font-weight: bold;
                 display: inline-block;
-                width: 80%;
+                width: 100%;
                 vertical-align: middle;
             }
             @media (max-width: 500px){
@@ -111,29 +122,35 @@
                     height: 24px;
                     line-height: 24px;
                     vertical-align: top;
-                    width: 75%;
+                    width: 100%;
+                    font-size: 12px;
                 }
             }
             .li_center{
                 display: inline-block;
-                width: 74%;
+                width: 100%;
+                padding: 0px 50px 0px 110px;
+                position: relative;
             }
             @media(max-width: 500px){
                 .li_center{
-                    padding-top: 10px;
+                    padding: 10px 50px 0px 40px;
+
                 }
             }
             .click_zhiding{
                 padding: 0px 4px;
                 font-size: 14px;
+                margin-top: 6px;
                 height: 24px;
                 line-height: 24px;
+                position: absolute;
             } 
             .li_right{
                 display: inline-block;
                 position: absolute;
                 right: 6px;
-                width: 13%;
+                width: 50px;
                 text-align: right;
             }
             .font_right{
@@ -152,10 +169,8 @@
                 text-align: center;
                 display: inline-block;
                 font-size: 0;
-                width: 65%;
-                position: absolute;
-                left: 34px;
-                bottom: -26px;
+                padding-left: 36px;
+                width: 110px;
             }
             @media (max-width: 500px){
                 .count{
@@ -164,10 +179,9 @@
                 font-size: 0;
                 position: absolute;
                 bottom: -26px;
-                left: 100px;
-                width: 160%;
+                left: 44px;
                 line-height: 12px;
-                margin-bottom: 4px;
+                margin-bottom: 12px;
                 }
             }
             .page-list{
@@ -194,6 +208,9 @@
             .li_center a:visit{
                 color:#888;
             }
+            .p-left-0{
+                padding-left: 0 !important;
+            }
         </style>
     </head>
     <body>
@@ -219,7 +236,7 @@
                     </div>
                     <div class="li_center">
                         <span v-if="current_type.name_cn=='全部'||(current_type.name_cn!='全部' && !(item.tab_cn=='问答'||item.tab_cn=='分享'))" class="click click_zhiding" :class="item.label_class" id="share" :data-typename="item.tab_cn">{{ item.tab_cn }}</span>
-                        <a href="javascript:void(0)" class="font_center">{{item.title}}</a>
+                        <a href="javascript:void(0)" class="font_center" :class="{'p-left-0':is_empty(item)}">{{item.title}}</a>
                     </div>
                     <div class="li_right">
                         <span class="font_right">{{ item.time_text }}</span>
@@ -283,6 +300,7 @@
                         vm.get_data();
                     },
                     current_type:function(){
+                        var vm = this;
                         vm.params_page = 1;
                         vm.get_data();
                     }
@@ -298,7 +316,7 @@
                         } 
                         return item.time_text;
                     },
-
+                    
                     get_data:function(){
                         var vm = this;
                         var url = 'https://cnodejs.org/api/v1/topics?tab='+vm.current_type.name+'&page='+vm.params_page+'&limit='+vm.params_limit;
@@ -314,18 +332,34 @@
                                 }else if(r.data[i].tab == 'ask'){
                                     r.data[i].tab_cn = "问答";
                                     r.data[i].label_class = 'b-999';
-                                }else{
+                                }else {
                                     r.data[i].tab_cn = '分享';
                                     r.data[i].label_class = 'b-999';
                                 }
+                                
                                 var mins = new Date(r.data[i].last_reply_at).getTime();
                                 var current_mins = new Date().getTime();
                                 var span_hour = (current_mins-mins)/1000/60/60;
                                 var time_text;
                                 r.data[i].time_text = vm.get_item_time_text(r.data[i],span_hour);
+                                
                             }
                             vm.items = r.data;
                         })
+                    },
+
+                    is_empty: function(item){
+                        var vm = this;
+                        if(vm.current_type.name_cn=='全部'||vm.current_type.name_cn=='精华') {
+                            return false;
+                        }else{
+                            if((vm.current_type.name_cn=='招聘'||vm.current_type.name_cn=='客户端测试')&&item.tab_cn=='分享') return true;
+                            else if(vm.current_type.name_cn==item.tab_cn){
+                                return true;
+                            }else {
+                                return false;
+                            }
+                        }
                     }
                 }
             });
