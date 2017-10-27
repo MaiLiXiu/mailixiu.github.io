@@ -80,14 +80,17 @@
             text-align: center;
             line-height: 50px;
         }
+        [v-cloak]{
+            display: none !important;
+        }
     </style>
     
 </head>
 <body>
     <div class="wrap">
         <h2 style="text-align: center;"><span class="top-title">完成的小项目哈哈</span></h2>
-        <ol>
-            <li v-for='item in lists'>
+        <ol v-cloak>
+            <li v-for='item in lists' >
                <a :href="item.url" target="_blank">   <!-- a -->
                     <div class="image">
                         <img :src="item.image" alt="项目截图" title="项目截图">

@@ -5,6 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title></title>
         <style type="text/css">
+        @font-face {
+          font-family: 'iconfont';  /* project id 324866 */
+          src: url('https://at.alicdn.com/t/font_324866_41tg5eppmalqsemi.eot');
+          src: url('https://at.alicdn.com/t/font_324866_41tg5eppmalqsemi.eot?#iefix') format('embedded-opentype'),
+          url('https://at.alicdn.com/t/font_324866_41tg5eppmalqsemi.woff') format('woff'),
+          url('https://at.alicdn.com/t/font_324866_41tg5eppmalqsemi.ttf') format('truetype'),
+          url('https://at.alicdn.com/t/font_324866_41tg5eppmalqsemi.svg#iconfont') format('svg');
+        }
+        .iconfont{
+            font-family:"iconfont" !important;
+            font-size:16px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;}
         *{box-sizing: border-box;}
         ul li{list-style: none;}
         ul,li{margin: 0;padding: 0;}
@@ -217,11 +231,33 @@
             .p-left-0{
                 padding-left: 0 !important;
             }
+            [v-cloak]{
+                display: none !important;
+            }
+            .scroll-to-top{
+                width: 50px;
+                height: 50px;
+                position: fixed;
+                z-index: 1000;
+                bottom: 10%;
+                right: 5%;
+                line-height: 40px;
+                font-size: 24px;
+                background-color: #eee;
+                border: 1px solid #999;
+                border-radius: 50%;
+                display: inline-block;
+                padding: 4px;
+                text-align: center;
+                cursor: pointer;
+                font-weight: bold;
+                color: #666;
+            }
         </style>
     </head>
     <body>
         <div class="total" id="wrap">
-            <ul class="top">
+            <ul class="top" v-cloak>
                 <li v-for="item in types" class="click_top" :class="{'click': current_type==item}" @click="current_type = item">{{ item.name_cn }}</li>
                 <!-- <li data-type="good" data-typename="精华" @click="data_separate(data-typename)">精华</li>
                 <li data-type="share" data-typename="分享" @click="data_separate">分享</li>
@@ -229,7 +265,7 @@
                 <li data-type="job" data-typename="招聘" @click="data_separate">招聘</li>
                 <li data-type="dev" data-typename="客户端测试" @click="data_separate">客户端测试</li> -->
             </ul>
-            <ul class="xian">
+            <ul class="xian" v-cloak>
                 <li v-for="item in items" class="f-col">
                     <div class="li_left">
                         <span class="img_frame"><img :src="item.author.avatar_url">
@@ -249,11 +285,12 @@
                     </div>
                 </li>
             </ul>
-            <ul class="page-list">
+            <!--ul class="page-list">
                 <li class="per-page page" @click="params_page-=1">&lt;&lt;</li>
                 <li v-for="page in pages" class="per-page page" :class="{'b-red':page==params_page}" @click="params_page=page" >{{ page }}</li>
                 <li class="per-page page" @click="params_page+=1">&gt;&gt;</li>
-            </ul>
+            </ul-->
+            <span v-if="scrollY>2*innerHeight" class="iconfont scroll-to-top" onclick="window.scrollTo(0,0)">&#xe6c5;</span>
         </div>
         <script src="../js/jquery-1.11.1.min.js"></script>
         <script src="../js/vue.js"></script>
@@ -271,7 +308,12 @@
 
                     total: 0,  // 总的数据量
                     items: [] , // 当前页的数据
-                    pages:[1,2,3,4,5,6],
+                    // pages:[1,2,3,4,5,6],
+
+                    scrollY:0,
+                    innerHeight:0,
+                    is_watch_scroll_to_load: true,  // 是否监听滚动
+
                     types:[{
                         name: '',
                         name_cn: '全部'
@@ -297,20 +339,30 @@
                 created: function(){
                     var vm = this;
                     vm.current_type = vm.types[0]; // 一开始打开页面时，按钮“全部”选中
-                    vm.get_data();
+                    vm.innerHeight = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+                    document.addEventListener('scroll',function(e){
+                        vm.scrollY = window.scrollY||document.body.scrollY||document.documentElement.scrollY;
+                    });
                 },
                 watch:{
                     params_page:function(){
-                        if(vm.params_page>6) vm.params_page=1;
-                        if(vm.params_page<1) vm.params_page=6;
+                        // if(vm.params_page>6) vm.params_page=1;
+                        // if(vm.params_page<1) vm.params_page=6;
                         vm.get_data();
                     },
                     current_type:function(){
                         var vm = this;
                         vm.params_page = 1;
                         vm.get_data();
+                    },
+                    scrollY:function(){
+                        var vm = this;
+                        if(!vm.is_watch_scroll_to_load) return;
+                        var scrollHeight = document.body.scrollHeight||document.documentElement.scrollHeight;
+                        if((scrollHeight-vm.scrollY)<1.5*vm.innerHeight){
+                            vm.params_page+=1;
+                        }
                     }
-
                 },
                 methods:{
                     get_item_time_text:function(item,span_hour){
@@ -325,9 +377,11 @@
                     
                     get_data:function(){
                         var vm = this;
+                        vm.is_watch_scroll_to_load = false;
                         var url = 'https://cnodejs.org/api/v1/topics?tab='+vm.current_type.name+'&page='+vm.params_page+'&limit='+vm.params_limit;
                         $.get(url, function(r){
                             console.log(rr=r)
+                            vm.is_watch_scroll_to_load = true;
                             for(var i in r.data){
                                 if(r.data[i].top){
                                     r.data[i].tab_cn = '置顶';
@@ -348,9 +402,9 @@
                                 var span_hour = (current_mins-mins)/1000/60/60;
                                 var time_text;
                                 r.data[i].time_text = vm.get_item_time_text(r.data[i],span_hour);
-                                
                             }
-                            vm.items = r.data;
+                            if(vm.params_page == 1) vm.items = r.data;
+                            else vm.items = vm.items.concat(r.data);
                         })
                     },
 
@@ -370,7 +424,6 @@
                 }
             });
         }
-
         </script>
     </body>
 </html>
