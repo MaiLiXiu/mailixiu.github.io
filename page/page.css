@@ -46,20 +46,30 @@ p,body,ul,li{margin:0;padding: 0;}
 
 /*@media width and(max-width: 1280px){*/
     .wrap{
-        width: 92rem;/*92rem*/
+        width: 83rem;/*92rem*/
         position: relative;
         margin: 0 auto;
         background: rgba(0,0,0,1);
     }
 /*}*/
 .w-1170{
-    width: 80rem ! important;/*82rem*/
+    width: 76rem ! important;
     margin: 0 auto;
+}
+.lunbo-menu-wrap{
+    position: relative;
+    width: 100%;
+    height: 65rem;
+    z-index: 1;
+    padding-top: 40px;
 }
 .lunbo{
     width: 100%;
     height: 65rem;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 .lunbo li{ display: none; }
 .lunbo img{
@@ -70,16 +80,15 @@ p,body,ul,li{margin:0;padding: 0;}
     left: 0;
 }
 .menu{
-    position: fixed;
-    margin-top: 4.2rem;
     width: 100%;
     height: 5.7rem;
-    background: rgba(0,0,0,1);
     z-index: 8;
 }
 .menu-fixed{
     position: fixed !important;
     top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,1);
 }
 .menu-iner{
     margin: .8rem auto;
@@ -87,16 +96,18 @@ p,body,ul,li{margin:0;padding: 0;}
     position: relative;
 }
 .menu-iner>img {
-    width: 12%;
-    height: 4.2rem; 
+    width: 14%;
     display: inline-block;
+    margin-top: .6rem;
 }
 .menu-right{
-    width: 86%;
+    width: 100%;
+    left: 0;
+    top: 0;
     position:absolute; 
     height: 4.2rem;
-    padding-left: 7%;
     display: inline-block;
+    text-align: right;
 }
 .menu-right li{
     height: 100%;
@@ -104,6 +115,10 @@ p,body,ul,li{margin:0;padding: 0;}
     margin-right: 3%;
     font-size: 0;
     color: #fff;
+    text-align: center;
+}
+.menu-right li:last-child{
+    margin-right: 0 !important;
 }
 .menu-right label {
     display: block;
@@ -192,6 +207,7 @@ p,body,ul,li{margin:0;padding: 0;}
     width: 17%;
     height: 100%;
     display: inline-block;
+    vertical-align: top;
 }
 .icon-button ul{text-align: center;}
 label.iconfont{
@@ -206,6 +222,7 @@ label.iconfont{
     line-height: 137%;
     font-size: 5.7rem;
     border-radius: 1.4rem;
+    margin: auto;
 }
 /*@media (max-width: 760px){
     .icon-1{
@@ -228,12 +245,16 @@ label.iconfont{
     
 }
 .icon-button label.f-w{
-    text-align: center;
-    font-size: 1.14rem;
-    width: 140%;
-    text-align: center;
-    margin-left: -50px;
+    font-size: .8rem;
+    width: 80%;
+    margin: 0 auto;
     display: block;
+    text-align: center;
+    margin-top: .5rem;
+    line-height: 1.4rem;
+}
+.m-l-50{
+    margin-left: 1.4rem;
 }
 .page1-bottom{
     width: 10%;
@@ -293,18 +314,20 @@ p.icon-translate{
     display:inline-block;
     font-weight: bold;
     vertical-align: top;
+    text-align: left;
 }
 .icon-3{
-    width: 30%;
+    width: 25%;
     display: inline-block;
 }
 .icon-3 label.iconfont{
     display:block;
-    height: 73%;
+    height: 80%;
     line-height: 136%;
     font-size: 4.7rem;
     border-radius: 1.42rem;
-    width: 70%;
+    width: 80%;
+    margin: 0 auto;
 }
 .page-content{
     width: 100%;
@@ -351,7 +374,7 @@ p.icon-translate{
     width: 30%;
 }
 .left-img img{
-    width: 11.85rem;
+    width: 10.85rem;
 }
 .cp-thing{
     display: inline-block;
@@ -473,17 +496,19 @@ p.icon-translate{
 }
 .foot-menu{
     width: 100%;
-    height: 10.7rem;
+    height: 5rem;
     vertical-align: top;
     text-align: center;
     font-size: 0;
-    padding-top: 5rem;
-    
+    position: relative;
 }
 .foot-menu-left{
     display: inline-block;
-    width: 85%;
-    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 2rem;
+    text-align: left;
     padding-right: 2.15rem;
 }
 .foot-menu-left a{
@@ -498,8 +523,10 @@ p.icon-translate{
     display: block;
 }
 .foot-menu img{
-    width: 8rem;
-    height: 4rem;
+    width: 10rem;
+    position: absolute;
+    top: 2rem;
+    right: 0;
 }
 .foot-menu img{
     vertical-align: top;

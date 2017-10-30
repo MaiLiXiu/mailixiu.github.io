@@ -2,6 +2,7 @@ function init(){
     var vm = new Vue({
         el:'.wrap',
         data:{
+            scrollY:0,
             menus:[{
                 name:'首页',
                 name_en:'home',
@@ -59,16 +60,16 @@ function init(){
                         is_checked: false,
                         items: [{
                             icon: '&#xe637;',
-                            desc: '客户的定制体验<br />全靠客服的服务态度和专业性<br />而过程中客服只为目的<br />导致用户体验并不好'
+                            desc: '客户的定制体验,全靠客服的服务态度和专业性,而过程中客服只为目的,导致用户体验并不好'
                         }, {
                             icon: '&#xe637;',
-                            desc: '定制企业如遇到快速发展的时机<br />却会因为人力成本<br />以及客户群体难以拓展等<br />遭到重重阻碍'
+                            desc: '定制企业如遇到快速发展的时机,却会因为人力成本,以及客户群体难以拓展等,遭到重重阻碍'
                         }, {
                             icon: '&#xe637;',
-                            desc: '用户在定制期间<br />仅能通过通讯软件和电话沟通<br />若用户反复要修改设计<br />不但增加交流成本且过程容易出错'
+                            desc: '用户在定制期间,仅能通过通讯软件和电话沟通,若用户反复要修改设计,不但增加交流成本且过程容易出错'
                         },{
                             icon: '&#xe637;',
-                            desc: '员工在订单处理时<br />会被占据大量时间<br />订单量会根据人力资源<br />所受到拓展限制'
+                            desc: '员工在订单处理时,会被占据大量时间,订单量会根据人力资源,所受到拓展限制'
                         }]
                 }]
             },
@@ -86,7 +87,7 @@ function init(){
                         desc:'多品种&小批量生产'
                     },{
                         icon:'&#xe614;',
-                        desc:'有效规避<br/>大量产品库存'
+                        desc:'有效规避大量产品库存'
                     },{
                         icon:'&#xe606;',
                         desc:'根据用户需求，做快速生产反应'
@@ -126,6 +127,21 @@ function init(){
                 }
             ]}
         },
+        created:function(){
+            var vm = this;
+            document.addEventListener('scroll',function(e){
+                vm.scrollY = window.scrollY||document.body.scrollY||document.documentElement.scrollY;
+            });
+        },
+
+        computed: {
+            is_fixed: function(){
+                var vm = this;
+                if(vm.scrollY>50) return true;
+                else return false;
+            }
+        },
+
         methods:{
             change_menu_item:function(item){
                 var vm=this;

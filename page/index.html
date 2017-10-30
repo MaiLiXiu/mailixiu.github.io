@@ -9,76 +9,78 @@
     </head>
     <body>
         <div class="wrap">
-            <div class="menu">
-                <div class="menu-iner w-1170">
-                    <img src="logo1.jpg">
-                    <nav class="menu-right">
-                        <ul>
-                            <li class="c-red">
-                                <a>
-                                    <label class="f-16">首页</label> 
-                                    <label class="f-12">home</label> 
-                                </a>
-                            </li> 
-                            <li >
-                                <a href="#page1">
-                                    <label class="f-16">企业困境</label>
-                                    <label class="f-12">dilemma</label>
-                                </a>
-                            <li>
-                            <li>
-                                <a href="#page2">
-                                    <label class="f-16">SPT产品</label>
-                                    <label class="f-12">Introduction</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#page3">
-                                    <label class="f-16">特色功能</label>
-                                    <label class="f-12">Function</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#page4">
-                                    <label class="f-16">优质服务</label>
-                                    <label class="f-12">service</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#page5">
-                                    <label class="f-16">营销案例</label>
-                                    <label class="f-12">Case</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#page6">
-                                    <label class="f-16">合作企业</label>
-                                    <label class="f-12">Cooperation</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#page7">
-                                    <label class="f-16">SP思博</label>
-                                    <label class="f-12">Support</label>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+            <div class="lunbo-menu-wrap">
+                <div class="menu" :class="{'menu-fixed':is_fixed}">
+                    <div class="menu-iner w-1170">
+                        <img src="logo_white.png">
+                        <nav class="menu-right">
+                            <ul>
+                                <li class="c-red">
+                                    <a>
+                                        <label class="f-16">首页</label> 
+                                        <label class="f-12">home</label> 
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a href="#page1">
+                                        <label class="f-16">企业困境</label>
+                                        <label class="f-12">dilemma</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#page2">
+                                        <label class="f-16">SPT产品</label>
+                                        <label class="f-12">Introduction</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#page3">
+                                        <label class="f-16">特色功能</label>
+                                        <label class="f-12">Function</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#page4">
+                                        <label class="f-16">优质服务</label>
+                                        <label class="f-12">service</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#page5">
+                                        <label class="f-16">营销案例</label>
+                                        <label class="f-12">Case</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#page6">
+                                        <label class="f-16">合作企业</label>
+                                        <label class="f-12">Cooperation</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#page7">
+                                        <label class="f-16">SP思博</label>
+                                        <label class="f-12">Support</label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
-            <div class="lunbo">
-                <ul class="picture">
-                    <li style="display: inline-block;"><img src='pic1.jpg'></li>
-                    <li><img src="pic2.jpg"></li>
-                    <li><img src="pic3.jpg"></li>
-                </ul>
-                <div class="page0-center">
-                    <label class="f-40"><span class="c-red">WE</span> ARE SUPPORT<span class="c-red">ER</span></label>
-                    <label class="f-26">-NICE TO MEET YOU-</label>
+                <div class="lunbo">
+                    <ul class="picture">
+                        <li style="display: inline-block;"><img src='pic1.jpg'></li>
+                        <li><img src="pic2.jpg"></li>
+                        <li><img src="pic3.jpg"></li>
+                    </ul>
+                    <div class="page0-center">
+                        <label class="f-40"><span class="c-red">WE</span> ARE SUPPORT<span class="c-red">ER</span></label>
+                        <label class="f-26">-NICE TO MEET YOU-</label>
+                    </div>
+                    <ul class="small-circle">
+                        <!-- <li></li> -->
+                    </ul>
                 </div>
-                <ul class="small-circle">
-                    <!-- <li></li> -->
-                </ul>
             </div>
             <div class="page w-1170">  <!-- 前面两页用vue渲染 -->
                 <div id="page1" class="hidden-target"></div>
@@ -95,7 +97,7 @@
                     </div>
                     <div>
                         <ul class="icon-button" v-for="tab in page1.tabs" v-if="tab.is_click">
-                            <li class="icon-1 " v-for="(item, index2) in tab.items" >
+                            <li class="icon-2" v-for="(item, index2) in tab.items" >
                                 <label class="iconfont c-fff " v-html="item.icon" :class="{'b-637':index2%2==0,'b-412':index2%2!=0}"></label>
                                 <label class=" f-w" v-html="item.desc" :class="{'c-637':index2%2==0,'c-412':index2%2!=0}"></label>
                             </li>
@@ -157,14 +159,14 @@
                         <li class="icon-tran left">
                             <div class="icon-3">
                                 <label class="iconfont icon b-637">&#xe711;</label>
-                                <label class="c-637 f-w">基本配置</label>
+                                <label class="c-637 f-w m-l-50">基本配置</label>
                             </div>
                             <p class="icon-translate c-637">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
                         </li>
                         <li class="icon-tran right">
                             <div class="icon-3">
                                 <label class="iconfont icon b-412">&#xe605;</label>
-                                <label class="c-412 f-w">支付功能</label>
+                                <label class="c-412 f-w m-l-50">支付功能</label>
                             </div>
                             <p class="icon-translate c-412">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
                         </li>
@@ -173,14 +175,14 @@
                         <li class="icon-tran left">
                             <div class="icon-3">
                                 <label class="iconfont icon b-412">&#xe605;</label>
-                                <label class="c-412 f-w">支付功能</label>
+                                <label class="c-412 f-w m-l-50">支付功能</label>
                             </div>
                             <p class="icon-translate c-412">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
                         </li>
                         <li class="icon-tran right">
                             <div class="icon-3">
                                 <label class="iconfont icon b-637">&#xe61c;</label>
-                                <label class="c-637 f-w">支持不同终端</label>
+                                <label class="c-637 f-w m-l-50">支持不同终端</label>
                             </div>
                             <p class="icon-translate c-637">价值链定义：SPT平台的营运者可以自行定义不同价值在价值链上的回报，所以角色利润自动分配，并产生对账单便于核对营运商界面配置：每个营运商通过轮播图、前端页面装饰等配置；</p>
                         </li>
@@ -271,16 +273,13 @@
                 <div class="icon-button">
                     <ul>
                         <li class="icon-4">
-                            <label class="b-637"><img src="logo4.jpg"></label>
-                            <label class="c-637 f-w">华帝卡尼定制平台</label>
+                            <label class=""><img src="hdkearny.png"></label>
                         </li>
                         <li class="icon-4">
-                            <label class="b-637"><img src="logo4.jpg"></label>
-                            <label class="c-637 f-w">Bia定制平台</label>
+                            <label class=""><img src="biaker.png"></label>
                         </li>
                         <li class="icon-4">
-                            <label class="b-637"><img src="logo4.jpg"></label>
-                            <label class="c-637 f-w">同捞同煲-云工厂</label>
+                            <label class=""><img src="tongbaotonglao.png"></label>
                         </li>
                     </ul>
                 </div>
@@ -294,7 +293,7 @@
                     <p class="desc w-60">WWW.SUPPORTC2M.COM</p>
                 </div>
                 <div class="big-logo">
-                    <img src="logo1.jpg">
+                    <img src="logo_black.png">
                 </div>
                 <div class="sp-tran">
                     <p>惠州思博互联网科技有限公司成立于2013年7月,也是惠州第一个起名互联网的公司,</p>
@@ -334,7 +333,7 @@
                 <div class="foot-content w-1170">
                     <div class="foot-menu">
                         <div class="foot-menu-left">
-                            <a class="c-red">
+                            <a class="c-red" style="padding-left: 0">
                                 <label class="f-16">首页</label>
                                 <label class="f-12">home</label>
                             </a>
@@ -367,7 +366,7 @@
                                 <label class="f-12">Support</label>
                             </a>
                         </div>
-                        <img src="logo1.jpg">
+                        <img src="logo_gray.png">
                     </div>
                     <div class="xian"></div>
                     <div class="foot-bottom">
@@ -393,6 +392,7 @@
             function window_resize(){
                 var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
                 var font_size = width/83+'px';
+                console.log(font_size)
                 $('html').css('fontSize', font_size);
             }
             $(document).ready(function(){
