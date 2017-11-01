@@ -161,6 +161,7 @@ p,body,ul,li{margin:0;padding: 0;}
     margin-bottom: 4rem;
     padding-bottom: 1.4rem;
     position: relative;
+    padding-bottom: 2.5rem;
 }
 .top{
     height: 2.85rem;
@@ -334,18 +335,18 @@ p.icon-translate{
     text-align: center;
     margin-top: 3.2rem;
 }
-.h-26{height: 26rem;}
+.h-26{height: 23rem;}
 .content-left{
     width: 14%;
     display: inline-block;
     padding-bottom: 1.57rem;
-    height: 23rem;
+    height: 19rem;
 }
 .content-left li{
     font-size: 1.85rem;
     margin-right: 2.85rem;
     height: 5.7rem;
-    line-height: 5.7rem;
+    line-height: 6.7rem;
     border-bottom: .28rem solid #b4b4b4;
     color: #b4b4b4;
     font-weight: bold;
