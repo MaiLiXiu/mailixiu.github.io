@@ -311,3 +311,4 @@ body{margin: 0 auto;width: 100%;-webkit-font-smoothing: subpixel-antialiased;}
     display: inline-block;
     vertical-align: top;
 }
+[v-cloak]{display: none!important;}

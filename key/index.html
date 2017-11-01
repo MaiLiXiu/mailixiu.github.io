@@ -23,7 +23,7 @@
                     <span>我爱五笔网</span>
                     <a href="">www.52wubi.com</a>
                 </div>
-                <div class="list">
+                <div class="list" v-cloak>
                     <ul class="list-iner">
                         <li v-for="list in lists">{{ list }}</li>
                         <!-- <li>指法练习</li>
@@ -34,14 +34,14 @@
                         <li>输入法下载</li> -->
                     </ul>
                 </div>
-                <div class="show-key">
+                <div class="show-key" v-cloak>
                     <a class="key-2" v-for="(item,index) in this_five_key">
                         <span class="key-left b" :class="{'g':this_key_index==index}"></span>
                         <span class="key-2-right b" :class="{'g':this_key_index==index}"></span>
                         <label class="key-font font-top iconfont" v-html="item.top_text" :class="{'one-li':item.is_single_line}"></label> 
                         <label class="key-font font-bottom" v-html="item.bottom_text"></label> </a>
                 </div>
-                <div class="show-time">
+                <div class="show-time" v-cloak>
                     <ul>
                         <li>
                             <span class="iconfont" style="color: blue">&#xe600;</span>
@@ -61,7 +61,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="key-wrap">
+                <div class="key-wrap" v-cloak>
                     <div class="key-col" v-for="line in keys">
                         <a :class="get_key_class(item)" v-for="item in line.items">
                             <span class="key-left" :class="get_left_color(item)"></span>
