@@ -1,0 +1,154 @@
+ html, body, p, label, ul, li, dl, dd, dt {margin: 0;}
+*{box-sizing: border-box;}
+.wrap{
+    width: 20rem; 
+    height: 28.4rem;
+    position: relative;
+}
+.chess-wrap{
+    width: 20rem;
+    height: 20rem;
+    position: absolute;
+    left: 0;
+    top: 5rem;
+}
+.chess-board{
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.chess-wrap a{
+    display: inline-block;
+    width: .85rem;
+    height: .85rem;
+    line-height: .85rem;
+    /*border: 1px solid #0ee;*/
+    position: absolute;
+    left: .575rem;
+    top: .575rem;
+    text-align: center;
+    z-index: 2;
+}
+.chess-wrap a>img{
+    width: 100%;
+}
+.top{
+    width: 20rem;
+    height: 5rem;
+    background-color:#0DB; 
+}
+.left-rules{
+    padding: .4rem 0 0 .6rem;
+    display: inline-block;
+    width: 60%;
+}
+.f-black{
+    color: black;
+    font-weight: bold;
+    line-height: 1.5rem;
+    font-size: .8rem;
+    text-indent: 1.6rem;
+}
+.f-rules{
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-block;
+    color: ##59C015;
+}
+.top-right{
+    float: right;
+    display: inline-block;
+    width: 6rem;
+    font-size: 0;
+    padding-top: .5rem;
+}
+.show-time{
+    width: 100%;
+    text-align: center;
+    font-size: .8rem;
+    height: 1.4rem;
+    padding-top: .5rem;
+}
+.show-chess{
+    width: 100%;
+    height: 1.5rem;
+    text-align: center;
+    font-size: 0;
+}
+.show-chess>span{
+    text-align: center;
+    font-size: .7rem;
+    width: 60%;
+    color: #ef8;
+    font-weight: bold;
+    float: left;
+    display: inline-block;
+    padding-top: .4rem;
+    margin-right: .2rem;
+}
+.show-chess>img{
+    height: 1.8rem;
+    width: 30%;
+    float: left;
+    display: inline-block;
+    margin-top: .5rem;
+}
+.begin{
+    width: 100%;
+    height: 88%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0,.6);
+}
+.begin button{
+    width: 30%;
+    height: 10%;
+    font-size: 1.2rem;
+    background-color: #52f;
+    position: absolute;
+    left: 7rem;
+    top: 14rem;
+    font-weight: bold;
+    color:#6f5;
+}
+.win{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0,.6);
+    display: none;
+}
+.again{
+    width: 30%;
+    height: 10%;
+    font-size: 1.2rem;
+    background-color: #52f;
+    position: absolute;
+    font-weight: bold;
+    padding: 0;
+    color: #6f5;
+    top: 14rem;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.quit{
+    left: 3.5rem;
+    top: 14rem;
+}
+.warning{
+    position: absolute;
+    left: 8rem;
+    top: 10rem;
+    color: white;
+    font-size: 1.3rem;
+}
+audio{
+    visibility: hidden;
+}
