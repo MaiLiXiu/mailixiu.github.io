@@ -82,7 +82,10 @@ function ding(){
 function play_win(){
     $('.audio-win').get(0).play();
 }
-
+function win_pause(){
+    $('.audio-win').get(0).pause();
+    return false;//阻止事件冒泡
+}
 // 检查下完旗子后是否赢
 function check(dom, index){
     window.win_chess = [];
@@ -261,6 +264,7 @@ function win_game(win_type){
     },300);
 }
 $('.again').click(function(){ //再来一局按钮点击事件
+    win_pause()
     $('.win').css('display','none');
     $('a').removeClass();
     $('a').empty();
