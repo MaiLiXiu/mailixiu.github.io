@@ -158,10 +158,15 @@ a{text-decoration: none;}
             margin-top: 0;
         }
     }
+    @media(max-width: 500px){
+        .li_right{
+            right: 6px!important;
+        }
+    }
     .li_right{
         display: inline-block;
         position: absolute;
-        right: 6px;
+        right: 20px;
         width: 50px;
         text-align: right;
     }
