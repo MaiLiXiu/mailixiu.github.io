@@ -388,19 +388,21 @@
         <script src="page.js"></script>
         <script src="../js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript">
+            $(document).ready(function(){
+                window_resize();
+                init();
+                $('.lunbo').hover(function(){
+                clearInterval(lunbo);
+                },function(){
+                    run();
+                })
+            });
             // 当窗口大小改变时，设置html的字体
             function window_resize(){
                 var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
                 var font_size = width/83+'px';
-                console.log(font_size)
                 $('html').css('fontSize', font_size);
             }
-            $(document).ready(function(){
-                window_resize();
-                init();
-            });
-            
-
             for(var i=0;i<3;i++){
                 $('.small-circle').append('<li></li>');
             }
@@ -409,18 +411,14 @@
                 len = $('.lunbo .picture li').length;
                 current_index = 0;
                 lunbo=setInterval(function(){
-                    $('.lunbo .picture li').eq(current_index).fadeIn('500').siblings().fadeOut('500');
+                    $('.lunbo .picture li').eq(current_index).fadeIn('5000').siblings().fadeOut('5000');
                     $('.small-circle li').eq(current_index).addClass('b-000').siblings('li').removeClass('b-000');
                     current_index++;  
                     if(current_index==len) current_index=0;
                 },1000)
             }
             run();
-            $('.lunbo').hover(function(){
-                clearInterval(lunbo);
-            },function(){
-                run();
-            })
+            
         </script>
     </body>
 </html>
