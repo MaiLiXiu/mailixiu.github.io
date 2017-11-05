@@ -92,7 +92,7 @@
                 </div>
                 <div class="content">
                     <div class="button">
-                        <li v-for="(tab,index) in page1.tabs" :class="{'b-637': tab.is_click}" @click="change_tab(page1,tab)">{{ tab.title }}
+                        <li v-for="(tab,index) in page1.tabs" :class="{'b-637': tab.is_click}" @mouseenter="change_tab(page1,tab)">{{ tab.title }}
                         </li>
                     </div>
                     <div>
@@ -123,7 +123,7 @@
                 <div class="content">
                     <div class="button">
                         <ul>
-                            <li :class="{'b-637':tab.is_click}" v-for="tab in page2.tabs" @click="change_tab(page2,tab)">{{ tab.title }}</li>
+                            <li :class="{'b-637':tab.is_click}" v-for="tab in page2.tabs" @mouseenter="change_tab(page2,tab)">{{ tab.title }}</li>
                             <!-- <li class="b-3b3">用户拓展&维护</li>
                             <li class="b-3b3">企业成本&发展</li> -->
                         </ul>

@@ -30,14 +30,14 @@ function init(){
             keys: function(){
                 var vm = this;
                 var is_first;
-                var keys = [ ];
+                var keys = [ ];//新数组
                 var this_line;  // 当前行的行数
                 var this_line_keys = [ ];  // 当前行的所有按钮
                 vm.origin_keys.forEach(function(item,index){
                     if(item.line == this_line) {
                         this_line_keys.push(item);
-                        item.is_first=false;
-                        if(index == vm.origin_keys.length-1){
+                        item.is_first=false;//是否为每行的第一个key
+                        if(index == vm.origin_keys.length-1){//这里判断是否遍历到最后一个key
                             keys.push({
                                 line: this_line,
                                 items: this_line_keys
