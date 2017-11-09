@@ -325,7 +325,7 @@
                     </div>
                     <div class="sumit">
                         <input type="reset" name="reset" value="重置">
-                        <input type="sumit" name="sumit" value="提交">
+                        <input type="submit" name="sumit" value="提交">
                     </div>
                 </div>
             </div>
@@ -395,7 +395,10 @@
                 clearInterval(lunbo);
                 },function(){
                     run();
-                })
+                });
+                $('.menu-right li').click(function(){
+                    $(this).addClass('c-red').siblings('li').removeClass('c-red');
+                });
             });
             // 当窗口大小改变时，设置html的字体
             function window_resize(){
